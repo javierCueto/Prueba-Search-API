@@ -13,7 +13,6 @@ class MainCell: UICollectionViewCell {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
         iv.clipsToBounds = true
-        // iv.isUserInteractionEnabled = true
         iv.image = #imageLiteral(resourceName: "pc")
         return iv
     }()

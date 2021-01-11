@@ -8,8 +8,10 @@
 
 import UIKit
 
-class MainController: UICollectionViewController {
+class MainController: UICollectionViewController  {
+    // MARK: -  Properties
     private let reuseIdentifier = "mainCellID"
+    private let searchController = UISearchController(searchResultsController: nil)
     
     // MARK: -  Lifecycle
     
@@ -24,6 +26,7 @@ class MainController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollection()
+        configureSearchBar()
     }
     
     // MARK: -  helpers
@@ -31,6 +34,24 @@ class MainController: UICollectionViewController {
         collectionView.register(MainCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView.backgroundColor = .systemGroupedBackground
     }
+    
+    func configureSearchBar(){
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.searchBar.placeholder = "Search"
+        navigationItem.titleView = searchController.searchBar
+        navigationItem.hidesSearchBarWhenScrolling = false
+        definesPresentationContext = false
+    }
+}
+
+extension MainController: UISearchResultsUpdating{
+    func updateSearchResults(for searchController: UISearchController) {
+        print("here")
+    }
+    
+    
 }
 
 
