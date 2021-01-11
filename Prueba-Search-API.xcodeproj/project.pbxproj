@@ -22,7 +22,7 @@
 		45549A0625AD04C400CB9701 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45549A0525AD04C400CB9701 /* Result.swift */; };
 		45549A0A25AD062E00CB9701 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45549A0925AD062E00CB9701 /* Product.swift */; };
 		45549A0E25AD0E2F00CB9701 /* ProductCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45549A0D25AD0E2F00CB9701 /* ProductCellViewModel.swift */; };
-		7FC8E8B46B32E9F0286866D6 /* Pods_PruebaiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C8D31EBA2AB74B0929F82E9 /* Pods_PruebaiOS.framework */; };
+		71FFDE5F00CAB1706519F250 /* Pods_Prueba_Search_API.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D1F2FB0C3A113ABDCDDFC8E /* Pods_Prueba_Search_API.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +36,7 @@
 		2DACFBA4253DDE3F00C2AFFD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2DACFBA7253DDE3F00C2AFFD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2DACFBA9253DDE3F00C2AFFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3FB322827E985EE717481E97 /* Pods-Prueba-Search-API.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Prueba-Search-API.release.xcconfig"; path = "Target Support Files/Pods-Prueba-Search-API/Pods-Prueba-Search-API.release.xcconfig"; sourceTree = "<group>"; };
 		455499EB25ACA72E00CB9701 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		455499EF25ACAB7B00CB9701 /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		455499F625ACB8ED00CB9701 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
@@ -44,8 +45,9 @@
 		45549A0525AD04C400CB9701 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		45549A0925AD062E00CB9701 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		45549A0D25AD0E2F00CB9701 /* ProductCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCellViewModel.swift; sourceTree = "<group>"; };
-		5C8D31EBA2AB74B0929F82E9 /* Pods_PruebaiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PruebaiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4BE8A202435C33DA97D500EA /* Pods-Prueba-Search-API.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Prueba-Search-API.debug.xcconfig"; path = "Target Support Files/Pods-Prueba-Search-API/Pods-Prueba-Search-API.debug.xcconfig"; sourceTree = "<group>"; };
 		9C9A665EE1FAC23D9C7929D8 /* Pods-PruebaiOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PruebaiOS.debug.xcconfig"; path = "Target Support Files/Pods-PruebaiOS/Pods-PruebaiOS.debug.xcconfig"; sourceTree = "<group>"; };
+		9D1F2FB0C3A113ABDCDDFC8E /* Pods_Prueba_Search_API.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Prueba_Search_API.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,7 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7FC8E8B46B32E9F0286866D6 /* Pods_PruebaiOS.framework in Frameworks */,
+				71FFDE5F00CAB1706519F250 /* Pods_Prueba_Search_API.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,7 +154,7 @@
 		56F41FF0EE18C79A99D7C5C5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5C8D31EBA2AB74B0929F82E9 /* Pods_PruebaiOS.framework */,
+				9D1F2FB0C3A113ABDCDDFC8E /* Pods_Prueba_Search_API.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -162,6 +164,8 @@
 			children = (
 				9C9A665EE1FAC23D9C7929D8 /* Pods-PruebaiOS.debug.xcconfig */,
 				0277E0F39CBC2729CC89E089 /* Pods-PruebaiOS.release.xcconfig */,
+				4BE8A202435C33DA97D500EA /* Pods-Prueba-Search-API.debug.xcconfig */,
+				3FB322827E985EE717481E97 /* Pods-Prueba-Search-API.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -241,15 +245,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PruebaiOS/Pods-PruebaiOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Prueba-Search-API/Pods-Prueba-Search-API-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PruebaiOS/Pods-PruebaiOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Prueba-Search-API/Pods-Prueba-Search-API-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PruebaiOS/Pods-PruebaiOS-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Prueba-Search-API/Pods-Prueba-Search-API-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E20FCEF82EDBD491050C001A /* [CP] Check Pods Manifest.lock */ = {
@@ -267,7 +271,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-PruebaiOS-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Prueba-Search-API-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -436,7 +440,7 @@
 		};
 		2DACFBAD253DDE3F00C2AFFD /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9C9A665EE1FAC23D9C7929D8 /* Pods-PruebaiOS.debug.xcconfig */;
+			baseConfigurationReference = 4BE8A202435C33DA97D500EA /* Pods-Prueba-Search-API.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -455,7 +459,7 @@
 		};
 		2DACFBAE253DDE3F00C2AFFD /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0277E0F39CBC2729CC89E089 /* Pods-PruebaiOS.release.xcconfig */;
+			baseConfigurationReference = 3FB322827E985EE717481E97 /* Pods-Prueba-Search-API.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

@@ -82,6 +82,7 @@ class MainController: UICollectionViewController  {
         ProductsService.fetchProducts { (result, error) in
             if let error = error{
                 print(error)
+                return
             }
             self.products = result.items
         }
@@ -131,7 +132,7 @@ extension MainController: UISearchResultsUpdating{
 
 extension MainController: UISearchBarDelegate {
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        print("start editin",searchBar.text)
+        //print("start editin",searchBar.text)
         }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -158,8 +159,8 @@ extension MainController{
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ProductCell
+        cell.viewModel = ProductCellViewModel(product: products[indexPath.row])
         return cell
     }
 }

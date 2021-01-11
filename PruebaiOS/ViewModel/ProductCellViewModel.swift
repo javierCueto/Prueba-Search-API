@@ -17,6 +17,17 @@ class ProductCellViewModel {
         return product.title
     }
     
+    var price: String {
+        return "$ \( String(format:"%.2f", product.price) )"
+    }
+    
+  
+    var image: URL? {
+        return URL(string: product.image)
+    }
+    
+  
+    
     init (product: Product){
         self.product = product
     }

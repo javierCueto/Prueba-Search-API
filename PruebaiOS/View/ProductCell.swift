@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ProductCell: UICollectionViewCell {
-    var modelView: ProductCellViewModel? {
+    var viewModel: ProductCellViewModel? {
         didSet{
             configureCell()
         }
@@ -19,7 +20,7 @@ class ProductCell: UICollectionViewCell {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
         iv.clipsToBounds = true
-        iv.image = #imageLiteral(resourceName: "pc")
+        iv.image = #imageLiteral(resourceName: "download")
         return iv
     }()
     
@@ -74,7 +75,10 @@ class ProductCell: UICollectionViewCell {
     }
     
     private func configureCell(){
-        
+        guard let viewModel = viewModel else {return}
+        titleLabel.text = viewModel.title
+        priceLabel.text = viewModel.price
+        productImageView.sd_setImage(with: viewModel.image)
     }
     
 }
