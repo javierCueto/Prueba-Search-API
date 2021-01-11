@@ -16,6 +16,7 @@
 		2DACFBA8253DDE3F00C2AFFD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DACFBA6253DDE3F00C2AFFD /* LaunchScreen.storyboard */; };
 		455499EC25ACA72E00CB9701 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455499EB25ACA72E00CB9701 /* MainController.swift */; };
 		455499F025ACAB7B00CB9701 /* MainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455499EF25ACAB7B00CB9701 /* MainCell.swift */; };
+		455499F725ACB8ED00CB9701 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455499F625ACB8ED00CB9701 /* Extension.swift */; };
 		7FC8E8B46B32E9F0286866D6 /* Pods_PruebaiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C8D31EBA2AB74B0929F82E9 /* Pods_PruebaiOS.framework */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +33,7 @@
 		2DACFBA9253DDE3F00C2AFFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		455499EB25ACA72E00CB9701 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		455499EF25ACAB7B00CB9701 /* MainCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCell.swift; sourceTree = "<group>"; };
+		455499F625ACB8ED00CB9701 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		5C8D31EBA2AB74B0929F82E9 /* Pods_PruebaiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PruebaiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C9A665EE1FAC23D9C7929D8 /* Pods-PruebaiOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PruebaiOS.debug.xcconfig"; path = "Target Support Files/Pods-PruebaiOS/Pods-PruebaiOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -69,6 +71,7 @@
 		2DACFB9A253DDE3C00C2AFFD /* PruebaiOS */ = {
 			isa = PBXGroup;
 			children = (
+				455499F525ACB8DC00CB9701 /* Utils */,
 				455499F325ACACAA00CB9701 /* Controller */,
 				455499EE25ACAB6E00CB9701 /* View */,
 				2DACFB9B253DDE3C00C2AFFD /* AppDelegate.swift */,
@@ -97,6 +100,14 @@
 				455499EB25ACA72E00CB9701 /* MainController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		455499F525ACB8DC00CB9701 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				455499F625ACB8ED00CB9701 /* Extension.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		56F41FF0EE18C79A99D7C5C5 /* Frameworks */ = {
@@ -233,6 +244,7 @@
 			files = (
 				2D4AA5BC25AB67020017C998 /* Products.swift in Sources */,
 				2D4AA5BE25AB77CB0017C998 /* ProductsCell.swift in Sources */,
+				455499F725ACB8ED00CB9701 /* Extension.swift in Sources */,
 				455499F025ACAB7B00CB9701 /* MainCell.swift in Sources */,
 				2DACFBA0253DDE3C00C2AFFD /* ViewController.swift in Sources */,
 				2DACFB9C253DDE3C00C2AFFD /* AppDelegate.swift in Sources */,
@@ -384,13 +396,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VCN327V2K9;
+				DEVELOPMENT_TEAM = TNSM43P2F3;
 				INFOPLIST_FILE = PruebaiOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.osvaldo.PruebaiOS;
+				PRODUCT_BUNDLE_IDENTIFIER = com.javiercueto.PruebaiOS;
 				PRODUCT_NAME = "Prueba-Search-API";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -403,13 +415,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VCN327V2K9;
+				DEVELOPMENT_TEAM = TNSM43P2F3;
 				INFOPLIST_FILE = PruebaiOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.osvaldo.PruebaiOS;
+				PRODUCT_BUNDLE_IDENTIFIER = com.javiercueto.PruebaiOS;
 				PRODUCT_NAME = "Prueba-Search-API";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

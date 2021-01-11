@@ -29,7 +29,7 @@ class MainController: UICollectionViewController {
     // MARK: -  helpers
     func configureCollection(){
         collectionView.register(MainCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = .systemGroupedBackground
     }
 }
 
@@ -44,7 +44,6 @@ extension MainController{
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-        cell.backgroundColor = .red
         return cell
     }
 }
@@ -64,7 +63,7 @@ extension MainController: UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = (view.frame.width - 60 ) / 2
         
-        return CGSize(width: width, height: width)
+        return CGSize(width: width, height: width + 30)
     }
     
     
