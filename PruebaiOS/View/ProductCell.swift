@@ -8,7 +8,13 @@
 
 import UIKit
 
-class MainCell: UICollectionViewCell {
+class ProductCell: UICollectionViewCell {
+    var modelView: ProductCellViewModel? {
+        didSet{
+            configureCell()
+        }
+    }
+    
     private let productImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
@@ -65,6 +71,10 @@ class MainCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func configureCell(){
+        
     }
     
 }
