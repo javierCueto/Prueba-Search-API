@@ -27,10 +27,12 @@ class ProductsService{
     
     
     
-    static func fetchProducts(completion: @escaping(Result,_ error:String?) -> Void){
+    static func fetchProducts(toSearch: String,completion: @escaping(Result,_ error:String?) -> Void){
         
         var results: Result?
-        let url = URL(string: API_PRODUCTS)
+        guard let urlString = "\(API_PRODUCTS)\(toSearch)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {return}
+        let url = URL(string: urlString)
+ 
         var request = URLRequest(url: url!)
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField:"Content-Type")

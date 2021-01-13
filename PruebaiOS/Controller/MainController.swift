@@ -29,6 +29,15 @@ class MainController: UIViewController  {
         }
     }
     
+    private var filterProductHistory = [String]()
+    var textSearh: String = ""
+    var isChildController = false
+    
+    private var inSearchMode: Bool{
+        return searchController.isActive && !searchController.searchBar.text!.isEmpty
+    }
+    
+    
     // MARK: -  Lifecycle
     
     override func viewDidLoad() {
@@ -38,6 +47,12 @@ class MainController: UIViewController  {
         configureSearchBar()
         configureTableView()
         fetchProducts()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        tableView.alpha = 0
+        searchController.searchBar.text = textSearh
         fetchProductHistory()
     }
     
@@ -51,19 +66,19 @@ class MainController: UIViewController  {
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
-
+        
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             self.tableView.alpha = 1
             tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
             tableView.scrollIndicatorInsets = tableView.contentInset
-         }
+        }
     }
     
     @objc private func keyboardWillHide(notification: NSNotification) {
         tableView.contentInset = .zero
     }
     
-
+    
     
     func configureSearchBar(){
         searchController.searchResultsUpdater = self
@@ -74,6 +89,9 @@ class MainController: UIViewController  {
         navigationItem.titleView = searchController.searchBar
         navigationItem.hidesSearchBarWhenScrolling = false
         definesPresentationContext = false
+        
+        searchController.searchBar.text = textSearh
+        
     }
     
     func configureTableView(){
@@ -92,8 +110,9 @@ class MainController: UIViewController  {
     
     // MARK: -  API
     func fetchProducts(){
+        let toSearch = searchController.searchBar.text ?? ""
         shouldPresentLoadingView(true)
-        ProductsService.fetchProducts { (result, error) in
+        ProductsService.fetchProducts(toSearch: toSearch) { (result, error) in
             if let error = error{
                 print(error)
                 return
@@ -107,6 +126,19 @@ class MainController: UIViewController  {
         ProductsService.getProductHistory { (productHistory) in
             self.productHistory = productHistory
         }
+    }
+    
+    func goToSearh(toSearch: String){
+        let controller = MainController()
+        controller.textSearh = toSearch
+        controller.isChildController = true
+        self.navigationController?.pushViewController(controller, animated: true)
+        
+        
+        if !isChildController {
+            self.searchController.searchBar.text = ""
+        }
+       
     }
     
 }
@@ -125,27 +157,30 @@ extension MainController: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return productHistory.count
+        return inSearchMode ? filterProductHistory.count : productHistory.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: tableCellID, for: indexPath)
-        cell.textLabel?.text = productHistory[indexPath.row]
+        cell.textLabel?.text =  inSearchMode ? filterProductHistory[indexPath.row] : productHistory[indexPath.row]
         cell.imageView?.image = UIImage(systemName: "clock")
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        
+        let toSearchText = inSearchMode ? filterProductHistory[indexPath.row] : productHistory[indexPath.row]
+        goToSearh(toSearch: toSearchText)
     }
     
 }
 extension MainController: UISearchResultsUpdating{
     func updateSearchResults(for searchController: UISearchController) {
-        print("cllick")
         guard let searchText = searchController.searchBar.text?.lowercased() else {return}
-        print(searchText)
+        
+        filterProductHistory = productHistory.filter({
+            $0.contains(searchText) || $0.lowercased().contains(searchText)
+        })
+        self.tableView.reloadData()
     }
     
     
@@ -157,10 +192,10 @@ extension MainController: UISearchBarDelegate {
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let searchText = searchController.searchBar.text?.lowercased() else {return}
+        guard let searchText = searchController.searchBar.text else {return}
         productHistory.insert(searchText, at: 0)
         ProductsService.setProductHistory(history: productHistory) { (true) in
-            print("nuevo dato añadido")
+            self.goToSearh(toSearch: searchText)
         }
     }
     
@@ -170,14 +205,7 @@ extension MainController: UISearchBarDelegate {
         UIView.animate(withDuration: 0.47) {
             self.tableView.alpha = 0
         }
-        //searchBar.text = nil
-        //searchBar.showsCancelButton = false
         
-        // Remove focus from the search bar.
-        //searchBar.endEditing(true)
-        
-        // Perform any necessary work.  E.g., repopulating a table view
-        // if the search bar performs filtering.
     }
 }
 
