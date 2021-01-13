@@ -172,6 +172,7 @@ extension MainController: UITableViewDataSource, UITableViewDelegate{
         let cell = tableView.dequeueReusableCell(withIdentifier: tableCellID, for: indexPath)
         cell.textLabel?.text =  inSearchMode ? filterProductHistory[indexPath.row] : productHistory[indexPath.row]
         cell.imageView?.image = UIImage(systemName: "clock")
+        print("la tabla esta cargando", inSearchMode)
         return cell
     }
     
@@ -187,8 +188,9 @@ extension MainController: UITableViewDataSource, UITableViewDelegate{
 // MARK: -  Search bar UISearchResultsUpdating
 extension MainController: UISearchResultsUpdating{
     func updateSearchResults(for searchController: UISearchController) {
+      
         guard let searchText = searchController.searchBar.text?.lowercased() else {return}
-        
+        print(searchController.searchBar.text)
         filterProductHistory = productHistory.filter({
             $0.contains(searchText) || $0.lowercased().contains(searchText)
         })
