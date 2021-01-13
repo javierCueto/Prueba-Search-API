@@ -23,10 +23,7 @@ class ProductsService{
         completion(true)
     }
     
-    
-    
-    
-    
+
     static func fetchProducts(toSearch: String,completion: @escaping(Result,_ error:String?) -> Void){
         
         var results: Result?

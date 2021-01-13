@@ -56,6 +56,11 @@ class MainController: UIViewController  {
         fetchProductHistory()
     }
     
+    deinit{
+          NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+          NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
     // MARK: -  helpers
     func configureCollection(){
         collectionView.register(ProductCell.self, forCellWithReuseIdentifier: reuseIdentifier)
@@ -144,6 +149,9 @@ class MainController: UIViewController  {
 }
 
 
+
+
+
 // MARK: -  tables datasource and delegate
 
 extension MainController: UITableViewDataSource, UITableViewDelegate{
@@ -173,6 +181,10 @@ extension MainController: UITableViewDataSource, UITableViewDelegate{
     }
     
 }
+
+
+
+// MARK: -  Search bar UISearchResultsUpdating
 extension MainController: UISearchResultsUpdating{
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text?.lowercased() else {return}
@@ -182,13 +194,11 @@ extension MainController: UISearchResultsUpdating{
         })
         self.tableView.reloadData()
     }
-    
-    
 }
 
+// MARK: -  search bar UISearchBarDelegate
 extension MainController: UISearchBarDelegate {
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        //print("start editin",searchBar.text)
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
