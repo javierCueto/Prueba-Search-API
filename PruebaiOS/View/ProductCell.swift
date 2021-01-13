@@ -78,7 +78,7 @@ class ProductCell: UICollectionViewCell {
         guard let viewModel = viewModel else {return}
         titleLabel.text = viewModel.title
         priceLabel.text = viewModel.price
-        productImageView.sd_setImage(with: viewModel.image)
+        productImageView.sd_setImage(with: viewModel.image, placeholderImage: #imageLiteral(resourceName: "download"))
     }
     
 }

@@ -26,7 +26,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0277E0F39CBC2729CC89E089 /* Pods-PruebaiOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PruebaiOS.release.xcconfig"; path = "Target Support Files/Pods-PruebaiOS/Pods-PruebaiOS.release.xcconfig"; sourceTree = "<group>"; };
 		2D4AA5BB25AB67020017C998 /* Products.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Products.swift; sourceTree = "<group>"; };
 		2D4AA5BD25AB77CB0017C998 /* ProductsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsCell.swift; sourceTree = "<group>"; };
 		2DACFB98253DDE3C00C2AFFD /* Prueba-Search-API.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Prueba-Search-API.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -46,7 +45,6 @@
 		45549A0925AD062E00CB9701 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		45549A0D25AD0E2F00CB9701 /* ProductCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCellViewModel.swift; sourceTree = "<group>"; };
 		4BE8A202435C33DA97D500EA /* Pods-Prueba-Search-API.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Prueba-Search-API.debug.xcconfig"; path = "Target Support Files/Pods-Prueba-Search-API/Pods-Prueba-Search-API.debug.xcconfig"; sourceTree = "<group>"; };
-		9C9A665EE1FAC23D9C7929D8 /* Pods-PruebaiOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PruebaiOS.debug.xcconfig"; path = "Target Support Files/Pods-PruebaiOS/Pods-PruebaiOS.debug.xcconfig"; sourceTree = "<group>"; };
 		9D1F2FB0C3A113ABDCDDFC8E /* Pods_Prueba_Search_API.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Prueba_Search_API.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -162,8 +160,6 @@
 		96333D80D9AD4695E2B4DCAB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				9C9A665EE1FAC23D9C7929D8 /* Pods-PruebaiOS.debug.xcconfig */,
-				0277E0F39CBC2729CC89E089 /* Pods-PruebaiOS.release.xcconfig */,
 				4BE8A202435C33DA97D500EA /* Pods-Prueba-Search-API.debug.xcconfig */,
 				3FB322827E985EE717481E97 /* Pods-Prueba-Search-API.release.xcconfig */,
 			);

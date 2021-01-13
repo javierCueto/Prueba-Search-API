@@ -29,7 +29,10 @@ class ProductsService{
                     
                     results = try JSONDecoder().decode(Result.self, from: data)
                     guard let saveResults = results else {return}
-                    completion(saveResults, nil)
+                    DispatchQueue.main.async {
+                        completion(saveResults, nil)
+                    }
+                    
                     
                     
                 }catch(let error){
