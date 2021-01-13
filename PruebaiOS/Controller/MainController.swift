@@ -23,9 +23,13 @@ class MainController: UIViewController  {
         }
     }
     
+    private var productHistory = [String]() {
+        didSet{
+            tableView.reloadData()
+        }
+    }
+    
     // MARK: -  Lifecycle
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +38,7 @@ class MainController: UIViewController  {
         configureSearchBar()
         configureTableView()
         fetchProducts()
+        fetchProductHistory()
     }
     
     // MARK: -  helpers
@@ -46,20 +51,19 @@ class MainController: UIViewController  {
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
+
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            let keyboardHeight = keyboardSize.height
-            let heigth = view.frame.height - keyboardHeight
-            configureTableWillAppear(height: heigth)
-        }
-        
+            self.tableView.alpha = 1
+            tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
+            tableView.scrollIndicatorInsets = tableView.contentInset
+         }
     }
     
-    func configureTableWillAppear(height: CGFloat){
-        
-        self.tableView.frame = CGRect(x: 0, y: 0, width: self.viewWidth, height: height)
-        self.tableView.alpha = 1
-        
+    @objc private func keyboardWillHide(notification: NSNotification) {
+        tableView.contentInset = .zero
     }
+    
+
     
     func configureSearchBar(){
         searchController.searchResultsUpdater = self
@@ -77,12 +81,13 @@ class MainController: UIViewController  {
         tableView.alpha = 0
         tableView.dataSource = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: tableCellID)
-        tableView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
+        tableView.frame = CGRect(x: 0, y: 0, width: viewWidth, height: viewHeight)
         view.addSubview(tableView)
     }
     
     func configurareNotifications(){
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     // MARK: -  API
@@ -95,9 +100,13 @@ class MainController: UIViewController  {
             }
             self.products = result.items
             self.shouldPresentLoadingView(false)
-
         }
-        
+    }
+    
+    func fetchProductHistory(){
+        ProductsService.getProductHistory { (productHistory) in
+            self.productHistory = productHistory
+        }
     }
     
 }
@@ -108,7 +117,7 @@ class MainController: UIViewController  {
 extension MainController: UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "test"
+        return "Historial"
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -116,13 +125,13 @@ extension MainController: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return productHistory.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: tableCellID, for: indexPath)
-        cell.textLabel?.text = "here"
-        
+        cell.textLabel?.text = productHistory[indexPath.row]
+        cell.imageView?.image = UIImage(systemName: "clock")
         return cell
     }
     
@@ -145,6 +154,14 @@ extension MainController: UISearchResultsUpdating{
 extension MainController: UISearchBarDelegate {
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         //print("start editin",searchBar.text)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let searchText = searchController.searchBar.text?.lowercased() else {return}
+        productHistory.insert(searchText, at: 0)
+        ProductsService.setProductHistory(history: productHistory) { (true) in
+            print("nuevo dato añadido")
+        }
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {

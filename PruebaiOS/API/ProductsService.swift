@@ -10,6 +10,21 @@ import Foundation
 
 class ProductsService{
     
+    static func getProductHistory(completion: @escaping([String]) -> Void){
+        let defaults = UserDefaults.standard
+        let data = defaults.stringArray(forKey: "historyArray") ?? [String]()
+        completion(data)
+    }
+    
+    static func setProductHistory(history: [String]  , completion: @escaping(Bool) -> Void){
+  
+        let defaults = UserDefaults.standard
+        defaults.set(history, forKey: "historyArray")
+        completion(true)
+    }
+    
+    
+    
     
     
     static func fetchProducts(completion: @escaping(Result,_ error:String?) -> Void){
