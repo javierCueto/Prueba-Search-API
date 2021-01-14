@@ -34,6 +34,9 @@ class MainController: UIViewController  {
     var isChildController = false
     
     private var inSearchMode: Bool{
+        if isChildController && !searchController.searchBar.text!.isEmpty{
+            return true
+        }
         return searchController.isActive && !searchController.searchBar.text!.isEmpty
     }
     
@@ -47,6 +50,9 @@ class MainController: UIViewController  {
         configureSearchBar()
         configureTableView()
         fetchProducts()
+        
+
+              
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -70,10 +76,9 @@ class MainController: UIViewController  {
         view.addSubview(collectionView)
     }
     
-    @objc func keyboardWillShow(notification: NSNotification) {
-        
+   @objc func keyboardWillShow(notification: NSNotification) {
+
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            self.tableView.alpha = 1
             tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
             tableView.scrollIndicatorInsets = tableView.contentInset
         }
@@ -109,8 +114,10 @@ class MainController: UIViewController  {
     }
     
     func configurareNotifications(){
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil);
+
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil);
     }
     
     // MARK: -  API
@@ -119,7 +126,7 @@ class MainController: UIViewController  {
         shouldPresentLoadingView(true)
         ProductsService.fetchProducts(toSearch: toSearch) { (result, error) in
             if let error = error{
-                print(error)
+                self.presentAlertController(withTitle: "Error con la Api", withMessage: error)
                 return
             }
             self.products = result.items
@@ -172,7 +179,10 @@ extension MainController: UITableViewDataSource, UITableViewDelegate{
         let cell = tableView.dequeueReusableCell(withIdentifier: tableCellID, for: indexPath)
         cell.textLabel?.text =  inSearchMode ? filterProductHistory[indexPath.row] : productHistory[indexPath.row]
         cell.imageView?.image = UIImage(systemName: "clock")
-        print("la tabla esta cargando", inSearchMode)
+        if isChildController {
+            print("la tabla esta cargando", inSearchMode)
+        }
+       
         return cell
     }
     
@@ -190,7 +200,6 @@ extension MainController: UISearchResultsUpdating{
     func updateSearchResults(for searchController: UISearchController) {
       
         guard let searchText = searchController.searchBar.text?.lowercased() else {return}
-        print(searchController.searchBar.text)
         filterProductHistory = productHistory.filter({
             $0.contains(searchText) || $0.lowercased().contains(searchText)
         })
@@ -201,6 +210,17 @@ extension MainController: UISearchResultsUpdating{
 // MARK: -  search bar UISearchBarDelegate
 extension MainController: UISearchBarDelegate {
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        
+        
+        UIView.animate(withDuration: 0.47) {
+            self.tableView.alpha = 1
+        }
+        
+        if isChildController {
+            print("esta en editing mode")
+            searchBar.setShowsCancelButton(true, animated: true)
+        }
+       
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -213,7 +233,7 @@ extension MainController: UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         
-        print("cancel here")
+        print("cancel here*****************")
         UIView.animate(withDuration: 0.47) {
             self.tableView.alpha = 0
         }
