@@ -105,7 +105,7 @@ extension UIViewController {
         let alert = UIAlertController(title: title ,message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
         alert.addAction(action)
-        
+        print("se llama la alerta")
         present(alert, animated: true, completion: nil)
     }
     

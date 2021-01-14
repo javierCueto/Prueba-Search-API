@@ -13,6 +13,7 @@ class MainController: UIViewController  {
     private let reuseIdentifier = "mainCellID"
     private let tableCellID = "mainTableCellID"
     private let searchController = UISearchController(searchResultsController: nil)
+    private let messageLabel = UILabel()
     private let tableView = UITableView()
     private lazy var viewWidth = view.frame.width
     private lazy var viewHeight = view.frame.height
@@ -74,6 +75,13 @@ class MainController: UIViewController  {
         collectionView.dataSource = self
         collectionView.delegate = self
         view.addSubview(collectionView)
+        
+       
+        messageLabel.text = "Sin resultados"
+        messageLabel.isHidden = true
+        self.view.addSubview(messageLabel)
+        messageLabel.centerX(inView: self.collectionView)
+        messageLabel.centerY(inView: self.collectionView)
     }
     
    @objc func keyboardWillShow(notification: NSNotification) {
@@ -126,10 +134,16 @@ class MainController: UIViewController  {
         shouldPresentLoadingView(true)
         ProductsService.fetchProducts(toSearch: toSearch) { (result, error) in
             if let error = error{
-                self.presentAlertController(withTitle: "Error con la Api", withMessage: error)
+                print(error)
                 return
             }
             self.products = result.items
+           
+            if result.totalResults == 0 {
+                //self.definesPresentationContext = true
+                self.messageLabel.isHidden = false
+                
+            }
             self.shouldPresentLoadingView(false)
         }
     }
@@ -218,6 +232,7 @@ extension MainController: UISearchBarDelegate {
         
         if isChildController {
             print("esta en editing mode")
+    
             searchBar.setShowsCancelButton(true, animated: true)
         }
        
